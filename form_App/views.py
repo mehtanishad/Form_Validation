@@ -9,6 +9,11 @@ def signup_page(request):
 
 def index(request):
     return render(request,'index.html')
+
+def forgot_password(request):
+    return render(request,'forgot_password.html')
+
+
 #signup_functionality
 def signup(request):
     if request.method=="POST":
