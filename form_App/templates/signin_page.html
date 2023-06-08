@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #4070f4;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 370px;
+            padding: 25px;
+            background-color: #fff;
+            border-radius: 8px;
+        }
+
+        .container h3 {
+            font-size: 22px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .container form {
+            margin-top: 30px;
+        }
+
+        form .field {
+            margin-bottom: 20px;
+        }
+
+        form .input-field {
+            position: relative;
+            width: 100%;
+            height: 55px;
+        }
+
+        .input-field input {
+            width: 100%;
+            height: 100%;
+            padding: 0 15px;
+            border: 1px solid #d1d1d1;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        .invalid input {
+            border: 1px solid #d93025;
+        }
+
+        .input-field .password-hide {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            font-size: 18px;
+            color: #919191;
+            padding: 3px;
+            cursor: pointer;
+        }
+
+        .field .error {
+            display: flex;
+            align-items: center;
+            margin-top: 6px;
+            font-size: 14px;
+            font-weight: 400;
+            color: #d93025;
+            display: none;
+        }
+
+        .invalid .error {
+            display: flex;
+        }
+
+        .error .error-icon {
+            font-size: 15px;
+            margin-right: 6px;
+        }
+
+        .create-password .error {
+            align-items: flex-start;
+        }
+
+        .create-password .error-icon {
+            margin-top: 4px;
+        }
+
+        .button-field {
+            margin: 25px 0 6px;
+        }
+
+        .button-field input {
+            font-size: 16px;
+            font-weight: 400;
+            background-color: #4070f4;
+            color: #fff;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .button-field input:hover {
+            background-color: #0e4bf1;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Created based on Youtube [CodingLab](https://www.youtube.com/@CodingLabYT)-->
+
+    <div class="container">
+        <h3>Login</h3>
+
+        {% if error %}
+        <p style="color: red;">{{ error }}</p>
+        {% endif %}
+
+        <form action="{% url 'signin' %}" method="post">
+            {% csrf_token %}
+            <div class="field email-field">
+                <div class="input-field">
+                    <input type="email" name="email" placeholder="Enter your email" class="email" required/>
+                </div>
+            </div>
+            <div class="field create-password">
+                <div class="input-field">
+                    <input type="password" name="password" placeholder="Create Password" class="password" required/>
+                    <i class="bx bx-hide password-hide"></i>
+                </div>
+            </div>
+            <div class="field button-field input-field">
+                <!-- <button type="submit">Login</button> -->
+                <button type="submit" class="btn btn-outline-primary btn-lg" style="width: 320px;">Login</button>
+            </div>
+            <div class=" dont-have"> Create Account <a href="{% url 'signup_page' %}">Sign up </a></div>
+            <div class="form-group mb-0">
+            </div>
+        </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
