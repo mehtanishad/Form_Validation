@@ -56,15 +56,29 @@ def signin(request):
     except Master.DoesNotExist as err:
         return render(request,"signin_page.html",{'error':"User does not Exists Please SignUp"})
 
+# profile page 
+def profile_page(request):
+    print(request.session['email'])
+    if 'email' in request.session:
+        try:
+            try:
+                profile_data(request)
+                return render(request,'profile_page.html',data)
+            except:
+                profile_data(request)
+                return redirect(index)
+        except Exception as err:
+            print("data not availabe ! submit your data admin side & relogin")
+    return redirect(index)
 
 
-# load profile data
 def profile_data(request):
     master = Master.objects.get(Email = request.session['email'])
     user_profile = Common.objects.get(Master = master)
 
     user_profile.first_name = user_profile.Name.split()[0]
     user_profile.last_name = user_profile.Name.split()[1]
+    user_profile.Address = user_profile.Address
 
 
     user_profile.DateOfBirth = user_profile.DateOfBirth.strftime("%Y-%m-%d")
@@ -76,7 +90,7 @@ def profile_data(request):
 
 main_path = settings.MEDIA_ROOT
 
-# profile update functionality 
+# profile update functionality student
 def profile_update(request):
     print(request.POST)
     master = Master.objects.get(Email = request.session['email'])
