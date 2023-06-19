@@ -22,8 +22,6 @@ def profile_page(request):
     return render(request,'profile_page.html')
 
 
-
-
 #signup_functionality
 def signup(request):
     if request.method=="POST":
@@ -80,9 +78,9 @@ def profile_data(request):
     user_profile.last_name = user_profile.Name.split()[1]
     user_profile.Address = user_profile.Address
 
-
     user_profile.DateOfBirth = user_profile.DateOfBirth.strftime("%Y-%m-%d")
     user_profile.DateOfJoining = user_profile.DateOfJoining.strftime("%Y-%m-%d")
+    
 
     data['user_data'] = user_profile
     
